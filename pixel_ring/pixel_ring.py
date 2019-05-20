@@ -24,3 +24,6 @@ class PixelRing(object):
 
     def off(self):
         pass
+
+    def error(self):
+        pass
