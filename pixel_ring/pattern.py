@@ -59,6 +59,22 @@ class Echo(object):
     def off(self):
         self.show([0] * 4 * 12)
 
+    def error(self):
+        pixels = []
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.show(pixels)
+
 class GoogleHome(object):
     def __init__(self, show):
         self.basis = [0] * 4 * 12
@@ -142,4 +158,202 @@ class GoogleHome(object):
     def off(self):
         self.show([0] * 4 * 12)
 
+    def error(self):
+        pixels = []
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.show(pixels)
 
+class Smartlife(object):
+    brightness = 24 * 8
+
+    def __init__(self, show, number=12):
+        self.pixels_number = number
+        #self.pixels = [0] * 8 * number
+
+        if not callable(show):
+            raise ValueError('show parameter is not callable')
+
+        self.show = show
+        self.stop = False
+
+    def wakeup(self, direction=0):
+
+        pixels = []
+
+        k = 200
+        for k in range(255):
+            j = 1
+            k += 50
+            if k > 255:
+                break
+
+            for j in range(12):
+                self.add_pixel(pixels, 0, 0, k, 0)
+                continue
+            self.show(pixels)
+            time.sleep(0.000001)
+            pixels = []
+            continue
+
+    def listen(self):
+
+        while not self.stop:
+            pixels = []
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.show(pixels)
+            time.sleep(0.2)
+
+            pixels = []
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.show(pixels)
+            time.sleep(0.2)
+
+    def think(self):
+
+        while not self.stop:
+            pixels = []
+            loopTime = 0.03
+
+            i = 0
+            j = 0
+            k = 0
+            count = 1
+            for k in range(12):
+                for j in range(count):
+                    self.add_pixel(pixels, 0, 0, 255, 0)
+                    j += 1
+                    continue
+                for i in range(12 - count):
+                    self.add_pixel(pixels, 0, 0, 0, 0)
+                    i += 1
+                    continue
+
+                self.show(pixels)
+                time.sleep(loopTime)
+                pixels = []
+                j = 0
+                count += 1
+                continue
+
+            pixels = []
+            i = 0
+            j = 0
+            k = 0
+            count = 1
+            for k in range(12):
+                for j in range(count):
+                    self.add_pixel(pixels, 0, 0, 0, 0)
+                    j += 1
+                    continue
+                for i in range(12 - count):
+                    self.add_pixel(pixels, 0, 0, 255, 0)
+                    i += 1
+                    continue
+
+                self.show(pixels)
+                time.sleep(loopTime)
+                pixels = []
+                j = 0
+                count += 1
+                continue
+
+    def speak(self):
+        while not self.stop:
+            pixels = []
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.add_pixel(pixels, 0, 0, 255, 0)
+            self.show(pixels)
+            time.sleep(0.45)
+
+            pixels = []
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.add_pixel(pixels, 0, 0, 180, 50)
+            self.show(pixels)
+            time.sleep(0.45)
+
+    def off(self):
+        self.show([0] * 4 * 12)
+
+    def error(self):
+        pixels = []
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.add_pixel(pixels, 0, 255, 0, 0)
+        self.show(pixels)
+
+
+    def add_pixel(self, pixels, dontKnow, r, g, b):
+        pixels.append(dontKnow)
+        pixels.append(r)
+        pixels.append(g)
+        pixels.append(b)
+
+    def set_all_pixles(self, pixels, dontKnow, r, g, b):
+        i = 1
+        for i in range(12):
+            pixels.append(dontKnow)
+            pixels.append(r)
+            pixels.append(g)
+            pixels.append(b)
