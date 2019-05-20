@@ -1,4 +1,3 @@
-
 import time
 import threading
 try:
@@ -7,7 +6,7 @@ except ImportError:
     import Queue as Queue
 
 from .apa102 import APA102
-from .pattern import Echo, GoogleHome
+from .pattern import Echo, GoogleHome, Smartlife
 
 
 class PixelRing(object):
@@ -16,6 +15,8 @@ class PixelRing(object):
     def __init__(self, pattern='google'):
         if pattern == 'echo':
             self.pattern = Echo(show=self.show)
+        elif pattern == 'smartlife':
+            self.pattern = Smartlife(show=self.show)
         else:
             self.pattern = GoogleHome(show=self.show)
 
@@ -60,6 +61,9 @@ class PixelRing(object):
     def off(self):
         self.put(self.pattern.off)
 
+    def error(self):
+        self.put(self.pattern.error)
+
     def put(self, func):
         self.pattern.stop = True
         self.queue.put(func)
@@ -72,6 +76,10 @@ class PixelRing(object):
 
     def show(self, data):
         for i in range(self.PIXELS_N):
+            #print("dk: " + str(int(data[4 * i + 0])))
+            #print("r: " + str(int(data[4*i + 1])))
+            #print("g: " + str(int(data[4 * i + 2])))
+            #print("b: " + str(int(data[4 * i + 3])))
             self.dev.set_pixel(i, int(data[4*i + 1]), int(data[4*i + 2]), int(data[4*i + 3]))
 
         self.dev.show()
@@ -82,7 +90,10 @@ class PixelRing(object):
         for i in range(self.PIXELS_N):
             self.dev.set_pixel(i, r, g, b)
 
+
+
         self.dev.show()
+        print("set color")
 
 
 if __name__ == '__main__':
