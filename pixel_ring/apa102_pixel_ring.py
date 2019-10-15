@@ -18,7 +18,7 @@ class PixelRing(object):
         elif pattern == 'smartlife':
             self.pattern = Smartlife(show=self.show)
         else:
-            self.pattern = GoogleHome(show=self.show)
+            self.pattern = Smartlife(show=self.show)
 
         self.dev = APA102(num_led=self.PIXELS_N)
 
